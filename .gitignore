@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/NetflixApp/NetflixApp.Android/bin/Debug
+/NetflixApp/NetflixApp.Android/obj
+/NetflixApp/NetflixApp/bin/Debug/netstandard2.0
+/NetflixApp/NetflixApp/obj
+/.vs
+/.vs/Netflix
+/.vs/ProjectEvaluation
