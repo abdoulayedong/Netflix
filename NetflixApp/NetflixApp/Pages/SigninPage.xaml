@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="NetflixApp.Pages.SigninPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:icon="clr-namespace:NetflixApp.Resources"
+    BackgroundColor="Black"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid RowDefinitions="auto, *">
+            <StackLayout Grid.Row="0" 
+                         Orientation="Horizontal"
+                         Margin="15,0">
+                <Button CornerRadius="100"
+                        HeightRequest="40"
+                        WidthRequest="35"
+                        BackgroundColor="Transparent"
+                        Style="{StaticResource BaseButton}"
+                        VerticalOptions="Center"
+                        Command="{Binding NavigationBackCommand}">
+                    <Button.ImageSource>
+                        <FontImageSource Glyph="&#xf004d;"
+                                         FontFamily="mdi"
+                                         Size="25"/>
+                    </Button.ImageSource>
+                </Button>
+                <Image Source="icon_full"
+                       HeightRequest="70"
+                       Margin="-8,0"/>
+            </StackLayout>        
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

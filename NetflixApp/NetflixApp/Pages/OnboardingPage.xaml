@@ -4,6 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converters="clr-namespace:NetflixApp.Convertes"
+    xmlns:icon="clr-namespace:NetflixApp.Resources"
     BackgroundColor="Black"
     NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
@@ -43,14 +44,14 @@
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid ColumnDefinitions="8, *, 8" 
-              RowDefinitions="0, auto, 20, *,20, auto, 10">
+        <Grid ColumnDefinitions="8, *, 8" RowDefinitions="0, auto, 20, *,auto, auto, 10">
             <CarouselView
                 Grid.Row="0"
                 Grid.RowSpan="4"
                 Grid.Column="0"
                 Grid.ColumnSpan="3"
                 HorizontalOptions="FillAndExpand"
+                IndicatorView="indicatorView"
                 ItemsSource="{Binding OnboardingModels}"
                 Loop="False"
                 VerticalOptions="FillAndExpand">
@@ -136,6 +137,23 @@
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
+
+            <IndicatorView
+                x:Name="indicatorView"
+                Grid.Row="4"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                HorizontalOptions="Center"
+                IndicatorColor="Transparent"
+                SelectedIndicatorColor="Transparent"
+                VerticalOptions="Center">
+                <IndicatorView.IndicatorTemplate>
+                    <DataTemplate>
+                        <Label Style="{StaticResource MaterialDesignIcon}" Text="{x:Static icon:IconFont.CircleMedium}" />
+                    </DataTemplate>
+                </IndicatorView.IndicatorTemplate>
+            </IndicatorView>
+
             <Image
                 Grid.Row="1"
                 Grid.Column="1"
@@ -155,7 +173,13 @@
                     Margin="15,0"
                     Style="{StaticResource HeaderLabelStyle}"
                     Text="Privacy" />
-                <Label Style="{StaticResource HeaderLabelStyle}" Text="Sign in" />
+                <Label Style="{StaticResource HeaderLabelStyle}" Text="Sign in">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigateToSigninCommnad}" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Style="{StaticResource MaterialDesignIcon}" Text="{x:Static icon:IconFont.DotsVertical}" />
             </StackLayout>
 
             <Button
@@ -170,63 +194,6 @@
                 HeightRequest="55"
                 Text="GET STARTED"
                 TextColor="White" />
-
-            <!--<CarouselView
-                Grid.Row="0"
-                Grid.RowSpan="4"
-                Grid.Column="0"
-                Grid.ColumnSpan="3"
-                BackgroundColor="Bisque"
-                HorizontalOptions="FillAndExpand"
-                ItemsSource="{Binding OnboardingModels}"
-                Loop="False"
-                VerticalOptions="FillAndExpand">
-                <CarouselView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid
-                            ColumnDefinitions="12, *, auto"
-                            HorizontalOptions="FillAndExpand"
-                            RowDefinitions="*"
-                            VerticalOptions="FillAndExpand">
-                            <Image
-                                Grid.Row="0"
-                                Grid.Column="0"
-                                Grid.ColumnSpan="3"
-                                Margin="0,0,0,30"
-                                Source="{Binding Path=ImageSource}"
-                                VerticalOptions="Center" />
-
-                            <BoxView
-                                Grid.Column="0"
-                                Grid.ColumnSpan="3"
-                                IsVisible="{Binding IsFill}"
-                                Opacity="2">
-                                <BoxView.Background>
-                                    <LinearGradientBrush EndPoint="0,1">
-                                        <GradientStop Offset="0.01" Color="Black" />
-                                        <GradientStop Offset="0.2" Color="Transparent" />
-                                        <GradientStop Offset="1.0" Color="Black" />
-                                    </LinearGradientBrush>
-                                </BoxView.Background>
-                            </BoxView>
-
-                            <StackLayout
-                                Grid.Column="1"
-                                Margin="0,0,0,15"
-                                BackgroundColor="Red"
-                                Spacing="15"
-                                VerticalOptions="End">
-                                <Label Margin="50,0" Text="{Binding Path=Title}" />
-
-                                <Label
-                                    Margin="60,0"
-                                    LineBreakMode="WordWrap"
-                                    Text="{Binding Path=Body}" />
-                            </StackLayout>
-                        </Grid>
-                    </DataTemplate>
-                </CarouselView.ItemTemplate>
-            </CarouselView>-->
         </Grid>
     </ContentPage.Content>
 </ContentPage>
