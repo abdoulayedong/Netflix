@@ -1,27 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
+<controls:AnimationPage
     x:Class="NetflixApp.Pages.OnboardingPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:FormsControls.Base;assembly=FormsControls.Base"
     xmlns:converters="clr-namespace:NetflixApp.Convertes"
     xmlns:icon="clr-namespace:NetflixApp.Resources"
-    BackgroundColor="Black"
-    NavigationPage.HasNavigationBar="False">
-    <ContentPage.Resources>
+    Style="{StaticResource BaseContentPage}">
+    <controls:AnimationPage.PageAnimation>
+        <controls:PageAnimation
+            Subtype="FromRight"
+            Type="Landing"
+            Duration="Short" />
+    </controls:AnimationPage.PageAnimation>
+    <controls:AnimationPage.Resources>
         <converters:BoolToAspectConverter x:Key="boolToAspect" />
-
-        <Style x:Key="LabelStyle" TargetType="Label">
-            <Setter Property="TextColor" Value="#fff" />
-            <Setter Property="TextTransform" Value="None" />
-            <Setter Property="HorizontalTextAlignment" Value="Center" />
-        </Style>
-
         <Style
             x:Key="TitleLabelStyle"
             BasedOn="{x:StaticResource LabelStyle}"
             TargetType="Label">
             <Setter Property="FontSize" Value="38" />
-            <Setter Property="FontAttributes" Value="None" />
             <Setter Property="TextColor" Value="WhiteSmoke" />
             <Setter Property="WidthRequest" Value="350" />
             <Setter Property="Margin" Value="30,0" />
@@ -32,8 +30,6 @@
             BasedOn="{x:StaticResource LabelStyle}"
             TargetType="Label">
             <Setter Property="FontSize" Value="18" />
-            <Setter Property="FontAttributes" Value="None" />
-            <Setter Property="TextColor" Value="White" />
         </Style>
 
         <Style x:Key="HeaderLabelStyle" TargetType="Label">
@@ -42,36 +38,36 @@
             <Setter Property="FontSize" Value="Small" />
             <Setter Property="TextTransform" Value="Uppercase" />
         </Style>
-    </ContentPage.Resources>
-    <ContentPage.Content>
-        <Grid ColumnDefinitions="8, *, 8" RowDefinitions="0, auto, 20, *,auto, auto, 10">
-            <CarouselView
-                Grid.Row="0"
-                Grid.RowSpan="4"
-                Grid.Column="0"
-                Grid.ColumnSpan="3"
-                HorizontalOptions="FillAndExpand"
-                IndicatorView="indicatorView"
-                ItemsSource="{Binding OnboardingModels}"
-                Loop="False"
-                VerticalOptions="FillAndExpand">
-                <CarouselView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid
-                            ColumnDefinitions="12,*,auto"
-                            HorizontalOptions="FillAndExpand"
-                            RowDefinitions="*"
-                            VerticalOptions="FillAndExpand">
-                            <Image
-                                Grid.Row="0"
-                                Grid.RowSpan="3"
-                                Grid.Column="0"
-                                Grid.ColumnSpan="3"
-                                Margin="0,0,0,30"
-                                Aspect="{Binding Path=IsFill, Converter={StaticResource boolToAspect}}"
-                                Source="{Binding Path=ImageSource}"
-                                VerticalOptions="Center">
-                                <!--<Image.Triggers>
+    </controls:AnimationPage.Resources>
+
+    <Grid ColumnDefinitions="8, *, 8" RowDefinitions="0, auto, 20, *,auto, auto, 10">
+        <CarouselView
+            Grid.Row="0"
+            Grid.RowSpan="4"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            HorizontalOptions="FillAndExpand"
+            IndicatorView="indicatorView"
+            ItemsSource="{Binding OnboardingModels}"
+            Loop="False"
+            VerticalOptions="FillAndExpand">
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <Grid
+                        ColumnDefinitions="12,*,auto"
+                        HorizontalOptions="FillAndExpand"
+                        RowDefinitions="*"
+                        VerticalOptions="FillAndExpand">
+                        <Image
+                            Grid.Row="0"
+                            Grid.RowSpan="3"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            Margin="0,0,0,30"
+                            Aspect="{Binding Path=IsFill, Converter={StaticResource boolToAspect}}"
+                            Source="{Binding Path=ImageSource}"
+                            VerticalOptions="Center">
+                            <!--<Image.Triggers>
                         <DataTrigger TargetType="Image" Binding="{Binding Path=IsFill}" Value="True">
                             <Setter Property="Aspect" Value="Fill" />
                             <Setter Property="HorizontalOptions" Value="Center" />
@@ -82,118 +78,121 @@
 
                         </DataTrigger>
                     </Image.Triggers>-->
-                            </Image>
-                            <BoxView
-                                Grid.Row="0"
-                                Grid.RowSpan="3"
-                                Grid.Column="0"
-                                Grid.ColumnSpan="3"
-                                IsVisible="{Binding IsFill}"
-                                Opacity="2">
-                                <BoxView.Background>
-                                    <!--  StartPoint defaults to (0,0)  -->
-                                    <LinearGradientBrush EndPoint="0,1">
+                        </Image>
+                        <BoxView
+                            Grid.Row="0"
+                            Grid.RowSpan="3"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            IsVisible="{Binding IsFill}"
+                            Opacity="2">
+                            <BoxView.Background>
+                                <!--  StartPoint defaults to (0,0)  -->
+                                <LinearGradientBrush EndPoint="0,1">
 
-                                        <GradientStop Offset="0.01" Color="Black" />
-                                        <GradientStop Offset="0.2" Color="Transparent" />
-                                        <GradientStop Offset="1.0" Color="Black" />
-                                    </LinearGradientBrush>
-                                </BoxView.Background>
-                            </BoxView>
+                                    <GradientStop Offset="0.01" Color="Black" />
+                                    <GradientStop Offset="0.2" Color="Transparent" />
+                                    <GradientStop Offset="1.0" Color="Black" />
+                                </LinearGradientBrush>
+                            </BoxView.Background>
+                        </BoxView>
 
-                            <StackLayout
-                                Grid.Row="2"
-                                Grid.Column="1"
-                                Margin="0,0,0,15"
-                                Spacing="15"
-                                VerticalOptions="End">
-                                <StackLayout.Triggers>
+                        <StackLayout
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Margin="0,0,0,15"
+                            Spacing="15"
+                            VerticalOptions="End">
+                            <StackLayout.Triggers>
+                                <DataTrigger
+                                    Binding="{Binding IsFill}"
+                                    TargetType="StackLayout"
+                                    Value="true" />
+                            </StackLayout.Triggers>
+                            <Label
+                                Margin="50,0"
+                                Style="{StaticResource TitleLabelStyle}"
+                                Text="{Binding Path=Title}" />
+
+                            <Label
+                                Margin="60,0"
+                                LineBreakMode="WordWrap"
+                                Style="{StaticResource BodyLabelStyle}"
+                                Text="{Binding Path=Body}">
+                                <Label.Triggers>
                                     <DataTrigger
                                         Binding="{Binding IsFill}"
-                                        TargetType="StackLayout"
-                                        Value="true" />
-                                </StackLayout.Triggers>
-                                <Label
-                                    Margin="50,0"
-                                    Style="{StaticResource TitleLabelStyle}"
-                                    Text="{Binding Path=Title}" />
+                                        TargetType="Label"
+                                        Value="true">
+                                        <Setter Property="Margin" Value="50,0" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                        </StackLayout>
+                    </Grid>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
 
-                                <Label
-                                    Margin="60,0"
-                                    LineBreakMode="WordWrap"
-                                    Style="{StaticResource BodyLabelStyle}"
-                                    Text="{Binding Path=Body}">
-                                    <Label.Triggers>
-                                        <DataTrigger
-                                            Binding="{Binding IsFill}"
-                                            TargetType="Label"
-                                            Value="true">
-                                            <Setter Property="Margin" Value="50,0" />
-                                        </DataTrigger>
-                                    </Label.Triggers>
-                                </Label>
-                            </StackLayout>
-                        </Grid>
-                    </DataTemplate>
-                </CarouselView.ItemTemplate>
-            </CarouselView>
+        <IndicatorView
+            x:Name="indicatorView"
+            Grid.Row="4"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            HorizontalOptions="Center"
+            IndicatorColor="Transparent"
+            SelectedIndicatorColor="Transparent"
+            VerticalOptions="Center">
+            <IndicatorView.IndicatorTemplate>
+                <DataTemplate>
+                    <Label Style="{StaticResource MaterialDesignIcon}" Text="{x:Static icon:IconFont.CircleMedium}" />
+                </DataTemplate>
+            </IndicatorView.IndicatorTemplate>
+        </IndicatorView>
 
-            <IndicatorView
-                x:Name="indicatorView"
-                Grid.Row="4"
-                Grid.Column="0"
-                Grid.ColumnSpan="3"
-                HorizontalOptions="Center"
-                IndicatorColor="Transparent"
-                SelectedIndicatorColor="Transparent"
-                VerticalOptions="Center">
-                <IndicatorView.IndicatorTemplate>
-                    <DataTemplate>
-                        <Label Style="{StaticResource MaterialDesignIcon}" Text="{x:Static icon:IconFont.CircleMedium}" />
-                    </DataTemplate>
-                </IndicatorView.IndicatorTemplate>
-            </IndicatorView>
+        <Image
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="0,3"
+            BackgroundColor="Transparent"
+            HorizontalOptions="Start"
+            Source="icon"
+            WidthRequest="45" />
 
-            <Image
-                Grid.Row="1"
-                Grid.Column="1"
-                Margin="0,3"
-                BackgroundColor="Transparent"
-                HorizontalOptions="Start"
-                Source="icon"
-                WidthRequest="45" />
+        <StackLayout
+            Grid.Row="1"
+            Grid.Column="1"
+            HorizontalOptions="EndAndExpand"
+            Orientation="Horizontal"
+            VerticalOptions="Center">
+            <Label
+                Margin="15,0"
+                Style="{StaticResource HeaderLabelStyle}"
+                Text="Privacy">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenPrivacyCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+            <Label Style="{StaticResource HeaderLabelStyle}" Text="Sign in">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateToSigninCommnad}" />
+                </Label.GestureRecognizers>
+            </Label>
 
-            <StackLayout
-                Grid.Row="1"
-                Grid.Column="1"
-                HorizontalOptions="EndAndExpand"
-                Orientation="Horizontal"
-                VerticalOptions="Center">
-                <Label
-                    Margin="15,0"
-                    Style="{StaticResource HeaderLabelStyle}"
-                    Text="Privacy" />
-                <Label Style="{StaticResource HeaderLabelStyle}" Text="Sign in">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding NavigateToSigninCommnad}" />
-                    </Label.GestureRecognizers>
-                </Label>
+            <Label Style="{StaticResource MaterialDesignIcon}" Text="{x:Static icon:IconFont.DotsVertical}" />
+        </StackLayout>
 
-                <Label Style="{StaticResource MaterialDesignIcon}" Text="{x:Static icon:IconFont.DotsVertical}" />
-            </StackLayout>
-
-            <Button
-                Grid.Row="5"
-                Grid.Column="0"
-                Grid.ColumnSpan="3"
-                Margin="11,0"
-                Padding="10"
-                BackgroundColor="#e50914"
-                CornerRadius="3"
-                FontSize="18"
-                HeightRequest="55"
-                Text="GET STARTED"
-                TextColor="White" />
-        </Grid>
-    </ContentPage.Content>
-</ContentPage>
+        <Button
+            Grid.Row="5"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            Margin="11,0"
+            Padding="10"
+            BackgroundColor="#e50914"
+            CornerRadius="3"
+            FontSize="18"
+            HeightRequest="55"
+            Text="GET STARTED"
+            TextColor="White" />
+    </Grid>
+</controls:AnimationPage>

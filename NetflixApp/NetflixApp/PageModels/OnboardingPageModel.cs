@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace NetflixApp.PageModels
@@ -12,12 +13,18 @@ namespace NetflixApp.PageModels
         public ObservableCollection<OnboardingModel> OnboardingModels { get; set; } = new ObservableCollection<OnboardingModel>();
 
         public Command NavigateToSigninCommnad { get; }
+        public Command OpenPrivacyCommand {  get; }
 
         public OnboardingPageModel()
         {
             NavigateToSigninCommnad = new Command(() =>
             {
                 CoreMethods.PushPageModel<SigninPageModel>();
+            });
+
+            OpenPrivacyCommand = new Command(async () =>
+            {
+                await Browser.OpenAsync(new Uri("https://help.netflix.com/legal/privacy?netflixsource=android&fromApp=true"));
             });
         }
 

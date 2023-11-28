@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FormsControls.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ using Xamarin.Forms.Xaml;
 namespace NetflixApp.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SigninPage : ContentPage
+    public partial class SigninPage : AnimationPage
     {
         public SigninPage()
         {

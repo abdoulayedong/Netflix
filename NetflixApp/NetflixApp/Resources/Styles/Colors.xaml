@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xaml-comp compile="true"?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+
+    <Color x:Key="FocusedEntryBackgroundColor">#4f4f4f</Color>
+    <Color x:Key="UnfocusedEntryBackgroundColor">#333333</Color>
+    <Color x:Key="ContentPageBackgroundColor">#000</Color>
+
+    <Color x:Key="PlaceholderTextColor">#8b8b8b</Color>
+    <Color x:Key="TextColor">#000</Color>
+    <Color x:Key="RedColor">#e50914</Color>
+    <Color x:Key="SelectedPlaceholderTextColor">#e6e6e6</Color>
+    <Color x:Key="UnselectedPlaceholderTextColor">#999999</Color>
+    <Color x:Key="EntryTextColor">#e6e6e6</Color>
+
+    <Color x:Key="OutlinedButtonTextColor">#b3b3b3</Color>
+    <Color x:Key="OutlinedButtonPressedBackgroundColor">#808080</Color>
+</ResourceDictionary>

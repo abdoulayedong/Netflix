@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="NetflixApp.CustomControls.EntryLabelControl"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cc="clr-namespace:NetflixApp.CustomControls"
+    x:Name="this">
+    <Grid BindingContext="{x:Reference this}" RowDefinitions="*, auto">
+        <Frame
+            x:Name="Border"
+            Margin="5,0"
+            Padding="5,3"
+            BackgroundColor="{Binding BackgroundColor}"
+            BorderColor="{Binding BorderColor}"
+            CornerRadius="{Binding BorderRadius}"
+            HasShadow="False">
+            <Grid
+                Margin="0"
+                ColumnDefinitions="1, *, 1"
+                RowDefinitions="1, *, 1">
+                <Label
+                    x:Name="Placeholder"
+                    Grid.Row="0"
+                    Grid.RowSpan="3"
+                    Grid.Column="1"
+                    Margin="3,4,0,2"
+                    FontFamily="{Binding PlaceholderFontFamily}"
+                    FontSize="{Binding PlaceholderSize}"
+                    HorizontalOptions="Start"
+                    HorizontalTextAlignment="Start"
+                    Text="{Binding PlaceholderText}"
+                    TextColor="{Binding PlaceholderColor}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+                <cc:CustomEntry
+                    x:Name="Entry"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="0,10,0,-5"
+                    IsPassword="{Binding IsPassword}"
+                    Keyboard="{Binding Keyboard}"
+                    ReturnType="{Binding ReturnTypeEntry}"
+                    Text="{Binding Text}"
+                    TextColor="{Binding TextColor}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+
+                <Label
+                    x:Name="Visibility"
+                    Grid.Row="0"
+                    Grid.RowSpan="3"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Margin="0,0,10,0"
+                    FontSize="16"
+                    HorizontalOptions="End"
+                    IsVisible="false"
+                    Text="SHOW"
+                    VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+        </Frame>
+        <BoxView
+            x:Name="WarningBar"
+            Margin="10,1"
+            HeightRequest="2.5"
+            HorizontalOptions="Fill"
+            IsVisible="{OnIdiom Tablet=true,
+                                Phone=false}"
+            VerticalOptions="End"
+            Color="DarkOrange" />
+
+        <Label
+            x:Name="WarningText"
+            Grid.Row="1"
+            Margin="10,-6,0,5"
+            FontSize="14.7"
+            IsVisible="{OnIdiom Tablet=true,
+                                Phone=false}"
+            Text="{Binding TextWarning}"
+            TextColor="DarkOrange" />
+
+        <Label
+            x:Name="ErrorText"
+            Grid.Row="1"
+            Margin="5,-5,0,5"
+            FontSize="12"
+            IsVisible="{OnIdiom Tablet=true,
+                                Phone=false}"
+            Text="{Binding TextError}" />
+    </Grid>
+</ContentView>

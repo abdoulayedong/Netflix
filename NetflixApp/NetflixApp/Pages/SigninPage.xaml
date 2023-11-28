@@ -1,33 +1,74 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
+<controls:AnimationPage
     x:Class="NetflixApp.Pages.SigninPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cc="clr-namespace:NetflixApp.CustomControls"
+    xmlns:controls="clr-namespace:FormsControls.Base;assembly=FormsControls.Base"
     xmlns:icon="clr-namespace:NetflixApp.Resources"
-    BackgroundColor="Black"
-    NavigationPage.HasNavigationBar="False">
-    <ContentPage.Content>
-        <Grid RowDefinitions="auto, *">
-            <StackLayout Grid.Row="0" 
-                         Orientation="Horizontal"
-                         Margin="15,0">
-                <Button CornerRadius="100"
-                        HeightRequest="40"
-                        WidthRequest="35"
-                        BackgroundColor="Transparent"
-                        Style="{StaticResource BaseButton}"
-                        VerticalOptions="Center"
-                        Command="{Binding NavigationBackCommand}">
-                    <Button.ImageSource>
-                        <FontImageSource Glyph="&#xf004d;"
-                                         FontFamily="mdi"
-                                         Size="25"/>
-                    </Button.ImageSource>
-                </Button>
-                <Image Source="icon_full"
-                       HeightRequest="70"
-                       Margin="-8,0"/>
-            </StackLayout>        
+    Style="{StaticResource BaseContentPage}">
+    <controls:AnimationPage.PageAnimation>
+        <controls:PageAnimation
+            Subtype="FromBottom"
+            Type="Slide"
+            Duration="Short" />
+    </controls:AnimationPage.PageAnimation>
+    <Grid RowDefinitions="auto, *">
+        <StackLayout
+            Grid.Row="0"
+            Margin="15,0"
+            Orientation="Horizontal">
+            <Button
+                BackgroundColor="Transparent"
+                Command="{Binding NavigationBackCommand}"
+                CornerRadius="100"
+                HeightRequest="40"
+                Style="{StaticResource BaseButton}"
+                VerticalOptions="Center"
+                WidthRequest="35">
+                <Button.ImageSource>
+                    <FontImageSource
+                        FontFamily="mdi"
+                        Glyph="{x:Static icon:IconFont.ArrowLeft}"
+                        Size="25" />
+                </Button.ImageSource>
+            </Button>
+            <Image
+                Margin="-8,0"
+                HeightRequest="70"
+                Source="icon_full" />
+        </StackLayout>
+        <Grid
+            Grid.Row="1"
+            ColumnDefinitions="10, *, 10"
+            RowDefinitions="0, *, 0">
+            <StackLayout
+                x:Name="entryContainer"
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="0"
+                Padding="0"
+                VerticalOptions="Center">
+
+                <cc:EntryLabelControl
+                    x:Name="EmailAddress"
+                    Keyboard="Email"
+                    PlaceholderText="Email or phone number"
+                    ReturnTypeEntry="Next"
+                    Style="{StaticResource DefaultEntry}"
+                    Text="{Binding Email}"
+                    TextWarning="{Binding WarningEmail}" />
+
+
+                <cc:EntryLabelControl
+                    x:Name="Password"
+                    IsPassword="True"
+                    PlaceholderText="Password"
+                    ReturnTypeEntry="Done"
+                    Style="{StaticResource DefaultEntry}"
+                    Text="{Binding Password}"
+                    TextWarning="{Binding WarningPassword}" />
+            </StackLayout>
         </Grid>
-    </ContentPage.Content>
-</ContentPage>
+    </Grid>
+</controls:AnimationPage>

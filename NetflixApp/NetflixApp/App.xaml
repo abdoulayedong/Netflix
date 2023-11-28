@@ -5,60 +5,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <Application.Resources>
 
-        <Color x:Key="FocusedEntryBackgroundColor">#4f4f4f</Color>
-        <Color x:Key="UnfocusedEntryBackgroundColor">#333333</Color>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
 
-        <Color x:Key="PlaceholderTextColor">#8b8b8b</Color>
-        <Color x:Key="TextColor">#000</Color>
-        <Color x:Key="RedColor">#e50914</Color>
-        <Color x:Key="SelectedPlaceholderTextColor">#e6e6e6</Color>
-        <Color x:Key="UnselectedPlaceholderTextColor">#999999</Color>
-        <Color x:Key="EntryTextColor">#e6e6e6</Color>
 
-        <Color x:Key="OutlinedButtonTextColor">#b3b3b3</Color>
-        <Color x:Key="OutlinedButtonPressedBackgroundColor">#808080</Color>
-
-        <Style x:Key="BaseButton" TargetType="Button">
-            <Setter Property="VisualStateManager.VisualStateGroups">
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="BackgroundColor" Value="Transparent" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="BackgroundColor" Value="{StaticResource OutlinedButtonPressedBackgroundColor}" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </Setter>
-        </Style>
-
-        <Style x:Key="MaterialDesignIcon" TargetType="Label">
-            <Setter Property="FontFamily" Value="mdi" />
-            <Setter Property="BackgroundColor" Value="Transparent" />
-            <Setter Property="FontSize" Value="20" />
-            <Setter Property="VerticalOptions" Value="Center" />
-            <Setter Property="VerticalTextAlignment" Value="Center" />
-            <Setter Property="VisualStateManager.VisualStateGroups">
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="TextColor" Value="Gray" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Selected">
-                            <VisualState.Setters>
-                                <Setter Property="TextColor" Value="Red" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </Setter>
-        </Style>
     </Application.Resources>
 </Application>
