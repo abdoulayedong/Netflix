@@ -1,4 +1,6 @@
-﻿using NetflixApp.Models;
+﻿using NetflixApp.Extensions;
+using NetflixApp.Models;
+using NetflixApp.Pages;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,6 +16,8 @@ namespace NetflixApp.PageModels
 
         public Command NavigateToSigninCommnad { get; }
         public Command OpenPrivacyCommand {  get; }
+        public Command OpenPopupCommand { get; }
+
 
         public OnboardingPageModel()
         {
@@ -25,6 +29,11 @@ namespace NetflixApp.PageModels
             OpenPrivacyCommand = new Command(async () =>
             {
                 await Browser.OpenAsync(new Uri("https://help.netflix.com/legal/privacy?netflixsource=android&fromApp=true"));
+            });
+
+            OpenPopupCommand = new Command(async () => 
+            {
+                await CoreMethods.PushPopupPageModel<SplashPopupPageModel>();
             });
         }
 

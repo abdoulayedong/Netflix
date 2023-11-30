@@ -11,6 +11,20 @@
         <Setter Property="NavigationPage.HasNavigationBar" Value="False" />
     </Style>
 
+    <Style x:Key="StackLayoutStyle" TargetType="StackLayout">
+        <Setter Property="BackgroundColor" Value="CadetBlue" />
+        <Setter Property="HeightRequest" Value="80" />
+        <Setter Property="HorizontalOptions" Value="End" />
+        <Setter Property="VerticalOptions" Value="Start" />
+        <Setter Property="Margin" Value="20" />
+        <Setter Property="Padding" Value="30,10" />
+    </Style>
+
+    <Style x:Key="MenuLabelStyle" TargetType="Label">
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="FontSize" Value="20" />
+    </Style>
+
     <Style x:Key="DefaultEntry" TargetType="cc:EntryLabelControl">
         <Setter Property="BorderColor" Value="{StaticResource UnfocusedEntryBackgroundColor}" />
         <Setter Property="BorderRadius" Value="3" />
@@ -47,6 +61,19 @@
                 </VisualStateGroup>
             </VisualStateGroupList>
         </Setter>
+    </Style>
+
+    <Style
+        x:Key="OutlinedButton"
+        BasedOn="{StaticResource BaseButton}"
+        TargetType="Button">
+        <Setter Property="TextColor" Value="{StaticResource OutlinedButtonTextColor}" />
+        <Setter Property="TextTransform" Value="None" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="FontSize" Value="17" />
+        <Setter Property="CornerRadius" Value="5" />
+        <Setter Property="Padding" Value="15" />
+        <Setter Property="FontAttributes" Value="Bold" />
     </Style>
 
     <Style x:Key="MaterialDesignIcon" TargetType="Label">

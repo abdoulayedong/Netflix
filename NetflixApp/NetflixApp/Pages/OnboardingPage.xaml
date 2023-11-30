@@ -170,7 +170,7 @@
                 Style="{StaticResource HeaderLabelStyle}"
                 Text="Privacy">
                 <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding OpenPrivacyCommand}"/>
+                    <TapGestureRecognizer Command="{Binding OpenPrivacyCommand}" />
                 </Label.GestureRecognizers>
             </Label>
             <Label Style="{StaticResource HeaderLabelStyle}" Text="Sign in">
@@ -179,7 +179,11 @@
                 </Label.GestureRecognizers>
             </Label>
 
-            <Label Style="{StaticResource MaterialDesignIcon}" Text="{x:Static icon:IconFont.DotsVertical}" />
+            <Label Style="{StaticResource MaterialDesignIcon}" Text="{x:Static icon:IconFont.DotsVertical}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenPopupCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
         </StackLayout>
 
         <Button

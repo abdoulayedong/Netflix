@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage
+    x:Class="NetflixApp.Pages.SplashPopupPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:popup="http://rotorgames.com"
+    Padding="0,10"
+    CloseWhenBackgroundIsClicked="True"
+    HasSystemPadding="True"
+    SystemPaddingSides="All">
+
+    <StackLayout Style="{StaticResource StackLayoutStyle}">
+        <Label
+            Style="{StaticResource MenuLabelStyle}"
+            Text="FAQs"
+            VerticalOptions="StartAndExpand" />
+        <Label
+            Style="{StaticResource MenuLabelStyle}"
+            Text="HELP"
+            VerticalOptions="EndAndExpand" />
+    </StackLayout>
+</popup:PopupPage>
