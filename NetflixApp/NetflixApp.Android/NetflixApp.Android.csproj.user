@@ -6,6 +6,7 @@
     <ActiveDebugProfile>Pixel 5 - API 31 %28Android 12.0 - API 31%29</ActiveDebugProfile>
     <DefaultDevice>pixel_5_-_api_31</DefaultDevice>
     <ProjectView>ProjectFiles</ProjectView>
-    <AndroidDesignerPreferredTheme>MainTheme</AndroidDesignerPreferredTheme>
+    <AndroidDesignerPreferredTheme>Theme.AppCompat.DayNight</AndroidDesignerPreferredTheme>
+    <AndroidDesignerPreferredDevice>Nexus 4</AndroidDesignerPreferredDevice>
   </PropertyGroup>
 </Project>

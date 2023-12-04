@@ -27,5 +27,12 @@ namespace NetflixApp.PageModels
             OnPropertyChanged(propertyName);
             return true;
         }
+
+        private bool _isBusy;
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set => SetProperty(ref _isBusy, value);
+        }
     }
 }

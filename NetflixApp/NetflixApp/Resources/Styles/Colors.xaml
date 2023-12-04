@@ -14,6 +14,8 @@
     <Color x:Key="UnselectedPlaceholderTextColor">#999999</Color>
     <Color x:Key="EntryTextColor">#e6e6e6</Color>
 
+    <Color x:Key="WhiteColor">#fff</Color>
+
     <Color x:Key="OutlinedButtonTextColor">#b3b3b3</Color>
     <Color x:Key="OutlinedButtonPressedBackgroundColor">#808080</Color>
 </ResourceDictionary>

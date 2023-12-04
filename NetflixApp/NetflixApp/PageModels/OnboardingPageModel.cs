@@ -1,10 +1,7 @@
 ﻿using NetflixApp.Extensions;
 using NetflixApp.Models;
-using NetflixApp.Pages;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -15,12 +12,18 @@ namespace NetflixApp.PageModels
         public ObservableCollection<OnboardingModel> OnboardingModels { get; set; } = new ObservableCollection<OnboardingModel>();
 
         public Command NavigateToSigninCommnad { get; }
-        public Command OpenPrivacyCommand {  get; }
+        public Command OpenPrivacyCommand { get; }
         public Command OpenPopupCommand { get; }
 
+        public Command GetStartedCommand {  get; }
 
         public OnboardingPageModel()
         {
+            GetStartedCommand = new Command(() =>
+            {
+                CoreMethods.PushPageModel<CheckEmailPageModel>();
+            });
+
             NavigateToSigninCommnad = new Command(() =>
             {
                 CoreMethods.PushPageModel<SigninPageModel>();
@@ -31,7 +34,7 @@ namespace NetflixApp.PageModels
                 await Browser.OpenAsync(new Uri("https://help.netflix.com/legal/privacy?netflixsource=android&fromApp=true"));
             });
 
-            OpenPopupCommand = new Command(async () => 
+            OpenPopupCommand = new Command(async () =>
             {
                 await CoreMethods.PushPopupPageModel<SplashPopupPageModel>();
             });

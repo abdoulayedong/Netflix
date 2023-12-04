@@ -197,6 +197,7 @@
             FontSize="18"
             HeightRequest="55"
             Text="GET STARTED"
+            Command="{Binding GetStartedCommand}"
             TextColor="White" />
     </Grid>
 </controls:AnimationPage>
