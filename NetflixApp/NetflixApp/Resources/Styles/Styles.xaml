@@ -46,6 +46,30 @@
         <Setter Property="HorizontalTextAlignment" Value="Center" />
     </Style>
 
+    <Style
+        x:Key="TitleLabelStyle"
+        BasedOn="{x:StaticResource LabelStyle}"
+        TargetType="Label">
+        <Setter Property="FontSize" Value="38" />
+        <Setter Property="TextColor" Value="WhiteSmoke" />
+        <Setter Property="WidthRequest" Value="350" />
+        <Setter Property="Margin" Value="30,0" />
+    </Style>
+
+    <Style
+        x:Key="BodyLabelStyle"
+        BasedOn="{x:StaticResource LabelStyle}"
+        TargetType="Label">
+        <Setter Property="FontSize" Value="18" />
+    </Style>
+
+    <Style x:Key="HeaderLabelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="#fff" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontSize" Value="Small" />
+        <Setter Property="TextTransform" Value="Uppercase" />
+    </Style>
+
     <Style x:Key="BaseButton" TargetType="Button">
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
@@ -102,4 +126,15 @@
         </Setter>
     </Style>
 
+
+    <Style x:Key="CommonButton" TargetType="Button">
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="FontSize" Value="{OnIdiom Tablet=22, Phone=18}" />
+        <Setter Property="CornerRadius" Value="2" />
+        <Setter Property="Margin" Value="{OnIdiom Tablet='12,0', Phone='2,0'}" />
+        <Setter Property="CharacterSpacing" Value="1.6" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="HeightRequest" Value="{OnIdiom Tablet=65, Phone=47}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource RedColor}" />
+    </Style>
 </ResourceDictionary>

@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<controls:AnimationPage
+    x:Class="NetflixApp.Pages.SignupPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cc="clr-namespace:NetflixApp.CustomControls"
+    xmlns:controls="clr-namespace:FormsControls.Base;assembly=FormsControls.Base"
+    BackgroundColor="White"
+    Style="{StaticResource BaseContentPage}">
+    <controls:AnimationPage.PageAnimation>
+        <controls:PageAnimation
+            Subtype="FromRight"
+            Type="Slide"
+            Duration="Medium" />
+    </controls:AnimationPage.PageAnimation>
+    <controls:AnimationPage.Resources>
+        <Style x:Key="signupLabelBase" TargetType="Label">
+            <Setter Property="Margin" Value="{OnIdiom Phone='30,0'}" />
+        </Style>
+        <Style
+            x:Key="signupLabelTitle"
+            BasedOn="{StaticResource signupLabelBase}"
+            TargetType="Label">
+            <Setter Property="Margin" Value="{OnIdiom Phone='30,0,30,0'}" />
+            <Setter Property="FontSize" Value="{OnIdiom Phone=23.5}" />
+            <Setter Property="TextColor" Value="Black" />
+        </Style>
+        <Style
+            x:Key="signupLabelBody"
+            BasedOn="{StaticResource signupLabelBase}"
+            TargetType="Label">
+            <Setter Property="Margin" Value="{OnIdiom Phone='30,10,30,0'}" />
+            <Setter Property="FontSize" Value="{OnIdiom Phone=18.5}" />
+            <Setter Property="TextColor" Value="Black" />
+        </Style>
+        <Style
+            x:Key="SignupEntry"
+            BasedOn="{StaticResource DefaultEntry}"
+            TargetType="cc:EntryLabelControl">
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="PlaceholderColor" Value="Gray" />
+            <Setter Property="UnselectedPlaceholderTextColor" Value="Gray" />
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="FocusedBackgroundColor" Value="Transparent" />
+            <Setter Property="Margin" Value="20,5,20,0" />
+            <Setter Property="BorderRadius" Value="2" />
+        </Style>
+        <Style x:Key="SignupCheckBox" TargetType="CheckBox">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Color" Value="#CC000000" />
+                            </VisualState.Setters>
+                        </VisualState>
+
+                        <VisualState x:Name="IsChecked">
+                            <VisualState.Setters>
+                                <Setter Property="Color" Value="Blue" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+        <Style x:Key="SignupLabelCheckBox" TargetType="Label">
+            <Setter Property="TextColor" Value="#CC000000" />
+        </Style>
+        <Style
+            x:Key="SignupButton"
+            BasedOn="{StaticResource CommonButton}"
+            TargetType="Button">
+            <Setter Property="Margin" Value="{OnIdiom Phone='25,15'}" />
+        </Style>
+    </controls:AnimationPage.Resources>
+    <controls:AnimationPage.Content>
+        <Grid ColumnDefinitions="0, *, 0" RowDefinitions="auto, auto, auto, auto, auto, auto, auto, *">
+            <Image
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="0,-8"
+                HorizontalOptions="Start"
+                Source="icon_full"
+                WidthRequest="120" />
+            <StackLayout
+                x:Name="Messages"
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="5,0"
+                HorizontalOptions="End"
+                Orientation="Horizontal"
+                VerticalOptions="Center">
+                <Label
+                    Margin="0,0,18,0"
+                    Style="{StaticResource HeaderLabelStyle}"
+                    Text="HELP"
+                    TextColor="Black" />
+
+                <Label
+                    Style="{StaticResource HeaderLabelStyle}"
+                    Text="LOG IN"
+                    TextColor="Black">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigateToSigninCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+
+            <Label
+                Grid.Row="2"
+                Grid.Column="1"
+                Style="{StaticResource signupLabelTitle}"
+                Text="Unlimited movies, TV shows and more" />
+
+            <Label
+                Grid.Row="3"
+                Grid.Column="1"
+                Style="{StaticResource signupLabelBody}"
+                Text="Create an account and we'll send you an email with everything you need to know about Netflix." />
+
+            <StackLayout Grid.Row="4" Grid.Column="1">
+                <cc:EntryLabelControl
+                    x:Name="EmailAddress"
+                    Keyboard="Email"
+                    PlaceholderText="Email"
+                    ReturnTypeEntry="Next"
+                    Style="{StaticResource SignupEntry}"
+                    Text="{Binding Email}"
+                    TextError="{Binding EmailError}" />
+
+                <cc:EntryLabelControl
+                    x:Name="Password"
+                    Margin="{OnIdiom Phone='20,0,20,0'}"
+                    IsPassword="True"
+                    PlaceholderText="Password"
+                    ReturnTypeEntry="Done"
+                    Style="{StaticResource SignupEntry}"
+                    Text="{Binding Password}"
+                    TextError="{Binding PasswordError}" />
+            </StackLayout>
+
+            <StackLayout
+                Grid.Row="5"
+                Grid.Column="1"
+                Margin="25,0"
+                Orientation="Horizontal">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </StackLayout.GestureRecognizers>
+                <CheckBox x:Name="checkbox" Style="{StaticResource SignupCheckBox}" />
+                <Label
+                    Style="{StaticResource SignupLabelCheckBox}"
+                    Text="Please do not email me Netflix special offers"
+                    VerticalTextAlignment="Center" />
+            </StackLayout>
+
+            <Button
+                x:Name="GetStarted"
+                Grid.Row="6"
+                Grid.Column="1"
+                Command="{Binding CreateAccountCommand}"
+                Style="{StaticResource SignupButton}">
+                <Button.Triggers>
+                    <DataTrigger
+                        Binding="{Binding IsBusy}"
+                        TargetType="Button"
+                        Value="True">
+                        <Setter Property="Text" Value="" />
+                        <Setter Property="IsEnabled" Value="False" />
+                    </DataTrigger>
+                    <DataTrigger
+                        Binding="{Binding IsBusy}"
+                        TargetType="Button"
+                        Value="False">
+                        <Setter Property="Text" Value="Create Account" />
+                        <Setter Property="IsEnabled" Value="True" />
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
+
+            <ActivityIndicator
+                Grid.Row="6"
+                Grid.Column="1"
+                HeightRequest="20"
+                HorizontalOptions="Center"
+                IsRunning="{Binding IsBusy}"
+                IsVisible="{Binding IsBusy}"
+                Color="White" />
+        </Grid>
+    </controls:AnimationPage.Content>
+</controls:AnimationPage>

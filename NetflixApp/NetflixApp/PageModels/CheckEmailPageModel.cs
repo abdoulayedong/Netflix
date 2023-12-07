@@ -36,9 +36,11 @@ namespace NetflixApp.PageModels
             GetStartedCommand = new Command(async () =>
             {
                 IsBusy = true;
-                CallValidator = true;
-                ValidationCommand.Execute(null);
-                await Task.Delay(3000);
+                //await Task.Delay(3000);
+                //CallValidator = true;
+                //ValidationCommand.Execute(null);
+
+                await CoreMethods.PushPageModel<SignupPageModel>();
                 IsBusy = false;
             });
 
@@ -70,9 +72,9 @@ namespace NetflixApp.PageModels
                 }
                 );
 
-            NavigationBackCommand = new Command(() =>
+            NavigationBackCommand = new Command(async() =>
             {
-                CoreMethods.PopPageModel();
+                await CoreMethods.PopPageModel();
             });
         }
     }

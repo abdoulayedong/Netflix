@@ -15,29 +15,6 @@
     </controls:AnimationPage.PageAnimation>
     <controls:AnimationPage.Resources>
         <converters:BoolToAspectConverter x:Key="boolToAspect" />
-        <Style
-            x:Key="TitleLabelStyle"
-            BasedOn="{x:StaticResource LabelStyle}"
-            TargetType="Label">
-            <Setter Property="FontSize" Value="38" />
-            <Setter Property="TextColor" Value="WhiteSmoke" />
-            <Setter Property="WidthRequest" Value="350" />
-            <Setter Property="Margin" Value="30,0" />
-        </Style>
-
-        <Style
-            x:Key="BodyLabelStyle"
-            BasedOn="{x:StaticResource LabelStyle}"
-            TargetType="Label">
-            <Setter Property="FontSize" Value="18" />
-        </Style>
-
-        <Style x:Key="HeaderLabelStyle" TargetType="Label">
-            <Setter Property="TextColor" Value="#fff" />
-            <Setter Property="FontAttributes" Value="Bold" />
-            <Setter Property="FontSize" Value="Small" />
-            <Setter Property="TextTransform" Value="Uppercase" />
-        </Style>
     </controls:AnimationPage.Resources>
 
     <Grid ColumnDefinitions="8, *, 8" RowDefinitions="0, auto, 20, *,auto, auto, 10">
