@@ -1,4 +1,5 @@
 ﻿using FluentValidation.Results;
+using NetflixApp.Services;
 using NetflixApp.Validators;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,17 @@ namespace NetflixApp.PageModels
 {
     public class CheckEmailPageModel : BasePageModel
     {
+
         #region Properties
-        public string EmailAddress { get; set; }
+        private readonly IAuthenticationService _authenticationService;
+       
+        private string _emailAddress;
+        public string EmailAddress
+        {
+            get { return _emailAddress; }
+            set => SetProperty(ref _emailAddress, value);
+        }
+
         private bool CallValidator { get; set; } = false;
 
         private CheckEmailValidator validator = new CheckEmailValidator();
@@ -33,14 +43,31 @@ namespace NetflixApp.PageModels
         #endregion
         public CheckEmailPageModel()
         {
+            _authenticationService = DependencyService.Get<IAuthenticationService>();
+
             GetStartedCommand = new Command(async () =>
             {
                 IsBusy = true;
-                //await Task.Delay(3000);
-                //CallValidator = true;
-                //ValidationCommand.Execute(null);
+                CallValidator = true;
+                ValidationCommand.Execute(null);
 
-                await CoreMethods.PushPageModel<SignupPageModel>();
+                if(!string.IsNullOrEmpty(ErrorMessage) || !string.IsNullOrWhiteSpace(ErrorMessage))
+                {
+                    IsBusy = false;
+                    return;
+                }
+
+                string loginResponse = await _authenticationService.LoginWithEmailAndPassword(EmailAddress, "secret");
+                if(loginResponse == "Exist")
+                {
+                    await CoreMethods.PopPageModel();
+                    await CoreMethods.PushPageModel<SigninPageModel>(data: EmailAddress);
+                }
+                if(loginResponse == "Not Exist")
+                {
+                    await CoreMethods.PopPageModel();
+                    await CoreMethods.PushPageModel<SignupPageModel>(data: EmailAddress);
+                }
                 IsBusy = false;
             });
 

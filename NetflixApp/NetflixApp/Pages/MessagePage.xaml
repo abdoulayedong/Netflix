@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<controls:AnimationPage
+    x:Class="NetflixApp.Pages.MessagePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cc="clr-namespace:NetflixApp.CustomControls"
+    xmlns:controls="clr-namespace:FormsControls.Base;assembly=FormsControls.Base"
+    BackgroundColor="White"
+    Style="{StaticResource BaseContentPage}">
+    <controls:AnimationPage.PageAnimation>
+        <controls:PageAnimation
+            Subtype="FromRight"
+            Type="Slide"
+            Duration="Medium" />
+    </controls:AnimationPage.PageAnimation>
+    <controls:AnimationPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="LabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="Margin" Value="20,0" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+            <Style
+                x:Key="TitleLabelStyle"
+                BasedOn="{StaticResource LabelStyle}"
+                TargetType="Label">
+                <Setter Property="FontSize" Value="26" />
+                <Setter Property="Margin" Value="30" />
+            </Style>
+            <Style
+                x:Key="BodyLabelStyle"
+                BasedOn="{StaticResource LabelStyle}"
+                TargetType="Label">
+                <Setter Property="FontSize" Value="17.4" />
+            </Style>
+        </ResourceDictionary>
+    </controls:AnimationPage.Resources>
+    <controls:AnimationPage.Content>
+        <Grid ColumnDefinitions="0, *, 0" RowDefinitions="auto, auto, auto, auto, auto, auto, auto, *">
+            <Image
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="0,-8"
+                HorizontalOptions="Start"
+                Source="icon_full"
+                WidthRequest="{OnIdiom Phone=120}" />
+
+            <StackLayout
+                x:Name="Messages"
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="5,0"
+                HorizontalOptions="EndAndExpand"
+                Orientation="Horizontal"
+                VerticalOptions="Center">
+
+                <Label
+                    Margin="{OnIdiom Phone='0,0,18,0'}"
+                    Style="{StaticResource HeaderLabelStyle}"
+                    Text="HELP"
+                    TextColor="Black">
+                    <!--<Label.GestureRecognizers>
+             <TapGestureRecognizer Command="{Binding NavigateToSigninCommand}"  />
+         </Label.GestureRecognizers>-->
+                </Label>
+
+                <Label
+                    Style="{StaticResource HeaderLabelStyle}"
+                    Text="SignOut"
+                    TextColor="Black">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SignoutCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+
+            <cc:IconMessageControl
+                Grid.Row="2"
+                Grid.Column="1"
+                Margin="30"
+                MessageType="Success"
+                Text="{Binding IconMessage}">
+                <cc:IconMessageControl.Triggers>
+                    <DataTrigger
+                        Binding="{Binding IsSuccessPage}"
+                        TargetType="cc:IconMessageControl"
+                        Value="True">
+                        <Setter Property="IsVisible" Value="True" />
+                    </DataTrigger>
+                    <DataTrigger
+                        Binding="{Binding IsSuccessPage}"
+                        TargetType="cc:IconMessageControl"
+                        Value="false">
+                        <Setter Property="IsVisible" Value="False" />
+                    </DataTrigger>
+                </cc:IconMessageControl.Triggers>
+            </cc:IconMessageControl>
+
+            <Label
+                Grid.Row="3"
+                Grid.Column="1"
+                Style="{StaticResource TitleLabelStyle}"
+                Text="Check your email to learn more">
+                <Label.Triggers>
+                    <DataTrigger
+                        Binding="{Binding IsSuccessPage}"
+                        TargetType="Label"
+                        Value="true">
+                        <Setter Property="Text" Value="Check your email to learn more" />
+                    </DataTrigger>
+                    <DataTrigger
+                        Binding="{Binding IsSuccessPage}"
+                        TargetType="Label"
+                        Value="false">
+                        <Setter Property="Text" Value="You're almost there!" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+        </Grid>
+    </controls:AnimationPage.Content>
+</controls:AnimationPage>

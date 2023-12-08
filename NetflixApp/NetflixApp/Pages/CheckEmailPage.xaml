@@ -13,7 +13,7 @@
         <controls:PageAnimation
             Subtype="FromBottom"
             Type="Slide"
-            Duration="Short" />
+            Duration="Medium" />
     </controls:AnimationPage.PageAnimation>
     <controls:AnimationPage.Resources>
         <Style

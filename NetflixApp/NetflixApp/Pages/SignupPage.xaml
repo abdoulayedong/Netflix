@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:cc="clr-namespace:NetflixApp.CustomControls"
     xmlns:controls="clr-namespace:FormsControls.Base;assembly=FormsControls.Base"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     BackgroundColor="White"
     Style="{StaticResource BaseContentPage}">
     <controls:AnimationPage.PageAnimation>
@@ -107,6 +108,28 @@
                 </Label>
             </StackLayout>
 
+            <cc:IconMessageControl
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="30,25,30,0"
+                MessageType="Warning"
+                Text="{Binding WarningMessage}">
+                <cc:IconMessageControl.Triggers>
+                    <DataTrigger
+                        Binding="{Binding IsWarningPage}"
+                        TargetType="cc:IconMessageControl"
+                        Value="true">
+                        <Setter Property="IsVisible" Value="True" />
+                    </DataTrigger>
+                    <DataTrigger
+                        Binding="{Binding IsWarningPage}"
+                        TargetType="cc:IconMessageControl"
+                        Value="false">
+                        <Setter Property="IsVisible" Value="False" />
+                    </DataTrigger>
+                </cc:IconMessageControl.Triggers>
+            </cc:IconMessageControl>
+
             <Label
                 Grid.Row="2"
                 Grid.Column="1"
@@ -126,8 +149,14 @@
                     PlaceholderText="Email"
                     ReturnTypeEntry="Next"
                     Style="{StaticResource SignupEntry}"
-                    Text="{Binding Email}"
-                    TextError="{Binding EmailError}" />
+                    Text="{Binding EmailAddress}"
+                    TextError="{Binding EmailAddressError}">
+                    <cc:EntryLabelControl.Behaviors>
+                        <xct:EventToCommandBehavior Command="{Binding ValidateEmailAddressCommand}" EventName="EntryFocused" />
+                        <xct:EventToCommandBehavior Command="{Binding ValidateEmailAddressCommand}" EventName="EntryUnfocused" />
+                        <xct:EventToCommandBehavior Command="{Binding ValidateEmailAddressCommand}" EventName="EntryTextChanged" />
+                    </cc:EntryLabelControl.Behaviors>
+                </cc:EntryLabelControl>
 
                 <cc:EntryLabelControl
                     x:Name="Password"
@@ -137,7 +166,13 @@
                     ReturnTypeEntry="Done"
                     Style="{StaticResource SignupEntry}"
                     Text="{Binding Password}"
-                    TextError="{Binding PasswordError}" />
+                    TextError="{Binding PasswordError}">
+                    <cc:EntryLabelControl.Behaviors>
+                        <xct:EventToCommandBehavior Command="{Binding ValidatePasswordCommand}" EventName="EntryFocused" />
+                        <xct:EventToCommandBehavior Command="{Binding ValidatePasswordCommand}" EventName="EntryUnfocused" />
+                        <xct:EventToCommandBehavior Command="{Binding ValidatePasswordCommand}" EventName="EntryTextChanged" />
+                    </cc:EntryLabelControl.Behaviors>
+                </cc:EntryLabelControl>
             </StackLayout>
 
             <StackLayout

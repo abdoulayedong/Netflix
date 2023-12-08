@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="NetflixApp.CustomControls.IconMessageControl"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="this">
+    <Frame
+        x:Name="frame"
+        Padding="0"
+        BindingContext="{x:Reference this}"
+        HasShadow="False">
+        <Grid ColumnDefinitions="auto, *">
+            <Label
+                x:Name="icon"
+                Grid.Column="0"
+                Margin="15,0,10,0"
+                FontSize="25"
+                Style="{StaticResource MaterialDesignIcon}"
+                Text="{Binding Source}"
+                TextColor="black"
+                VerticalTextAlignment="Center" />
+            <Label
+                x:Name="message"
+                Grid.Column="1"
+                Margin="0,20,32,20"
+                FontSize="17.5"
+                Text="{Binding Text}"
+                TextColor="Black"
+                VerticalTextAlignment="Center" />
+        </Grid>
+    </Frame>
+</ContentView>

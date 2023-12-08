@@ -11,7 +11,7 @@
         <controls:PageAnimation
             Subtype="FromBottom"
             Type="Slide"
-            Duration="Short" />
+            Duration="Medium" />
     </controls:AnimationPage.PageAnimation>
     <Grid RowDefinitions="auto, *">
         <StackLayout

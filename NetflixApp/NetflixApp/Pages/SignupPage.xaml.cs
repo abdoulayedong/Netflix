@@ -11,9 +11,15 @@ namespace NetflixApp.Pages
             InitializeComponent();
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            EmailAddress.EntryLabelFocused();
+        }
+
         private void TapGestureRecognizer_Tapped(object sender, System.EventArgs e)
         {
-
+            checkbox.IsChecked = !checkbox.IsChecked;
         }
     }
 }
